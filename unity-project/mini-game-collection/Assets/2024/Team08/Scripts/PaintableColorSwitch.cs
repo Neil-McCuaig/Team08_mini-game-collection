@@ -47,7 +47,8 @@ namespace MiniGameCollection.Games2024.Team08
             }
             else if (blueCollor && IsNeutral == true)
             {
-                IsBlue = false;
+                IsBlue = true;
+                IsNeutral = false;
                 rend.sharedMaterial = Material[2];
                 //pointBoxSpawner.OnPlayer2Score();
                 PointKeeper.AddScoreP2();
