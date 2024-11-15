@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MiniGameCollection.Games2024.Team08
 {
-    public class PaintableColorSwitch : MonoBehaviour
+    public class PaintableColorSwitch : MiniGameBehaviour
     {
         //[SerializeField] public Color switchColor = Color.white;
 
@@ -12,6 +12,7 @@ namespace MiniGameCollection.Games2024.Team08
         [SerializeField] public bool IsRed;
         [SerializeField] public bool IsBlue;
         [SerializeField] public Material[] Material;
+        public PointBoxSpawner pointBoxSpawner;
         Renderer rend;
         // Start is called before the first frame update
         void Start()
@@ -40,11 +41,13 @@ namespace MiniGameCollection.Games2024.Team08
                 IsRed = true;
                 IsNeutral = false;
                 rend.sharedMaterial = Material[1];
+                pointBoxSpawner.OnPlayer1Score();
             }
             else if (blueCollor && IsNeutral == true)
             {
                 IsBlue = false;
                 rend.sharedMaterial = Material[2];
+                pointBoxSpawner.OnPlayer2Score();
             }
             else if (redCollor && IsBlue == true) 
             {
