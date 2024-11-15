@@ -7,6 +7,8 @@ namespace MiniGameCollection.Games2024.Team08
     public class PointBoxSpawner : MiniGameBehaviour
     {
         [field: SerializeField] public GameObject Obstacle { get; private set; }
+
+        [field: SerializeField] public GameObject Antipoint { get; private set; }
         //[field: SerializeField] public Transform[] SpawnPoints { get; private set; }
         [field: SerializeField] public Transform[] Point1 { get; private set; }
         [field: SerializeField] public Transform[] Point2 { get; private set; }
@@ -48,6 +50,50 @@ namespace MiniGameCollection.Games2024.Team08
             }
         }
         public void OnPlayer2Score()
+        {
+            Vector3 direction = transform.forward;
+            float distanceZ = transform.position.z;
+            float speed = ComputeSpeed(MinSpeedUnitsPerSecond, MaxSpeedUnitsPerSecond);
+
+            for (int i = 0; i < Point2.Length; i++)
+            {
+                Transform spawnPoint = Point2[i];
+                Vector3 position = spawnPoint.position;
+                Quaternion rotation = transform.rotation;
+                GameObject instance = Instantiate(Obstacle, position, rotation);
+                instance.SetActive(true);
+                instance.transform.parent = spawnPoint.transform;
+                //Obstacle obstacle = instance.GetComponent<Obstacle>();
+                Rigidbody rigidbody = instance.GetComponent<Rigidbody>();
+                // Create force towards players where obstacle reaches in 1s (normalized
+                Vector3 force = direction * rigidbody.mass * distanceZ * speed;
+                rigidbody.AddForce(force, ForceMode.Impulse);
+            }
+        }
+
+        public void AntiPlayer1Score()
+        {
+            Vector3 direction = transform.forward;
+            float distanceZ = transform.position.z;
+            float speed = ComputeSpeed(MinSpeedUnitsPerSecond, MaxSpeedUnitsPerSecond);
+
+            for (int i = 0; i < Point2.Length; i++)
+            {
+                Transform spawnPoint = Point2[i];
+                Vector3 position = spawnPoint.position;
+                Quaternion rotation = transform.rotation;
+                GameObject instance = Instantiate(Obstacle, position, rotation);
+                instance.SetActive(true);
+                instance.transform.parent = spawnPoint.transform;
+                //Obstacle obstacle = instance.GetComponent<Obstacle>();
+                Rigidbody rigidbody = instance.GetComponent<Rigidbody>();
+                // Create force towards players where obstacle reaches in 1s (normalized
+                Vector3 force = direction * rigidbody.mass * distanceZ * speed;
+                rigidbody.AddForce(force, ForceMode.Impulse);
+            }
+        }
+
+        public void AntiPlayer2Score()
         {
             Vector3 direction = transform.forward;
             float distanceZ = transform.position.z;

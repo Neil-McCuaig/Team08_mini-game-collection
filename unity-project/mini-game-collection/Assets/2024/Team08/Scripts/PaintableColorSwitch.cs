@@ -12,7 +12,8 @@ namespace MiniGameCollection.Games2024.Team08
         [SerializeField] public bool IsRed;
         [SerializeField] public bool IsBlue;
         [SerializeField] public Material[] Material;
-        public PointBoxSpawner pointBoxSpawner;
+        public PointKeeper PointKeeper;
+        //public PointBoxSpawner pointBoxSpawner;
         Renderer rend;
         // Start is called before the first frame update
         void Start()
@@ -41,25 +42,30 @@ namespace MiniGameCollection.Games2024.Team08
                 IsRed = true;
                 IsNeutral = false;
                 rend.sharedMaterial = Material[1];
-                pointBoxSpawner.OnPlayer1Score();
+                //pointBoxSpawner.OnPlayer1Score();
+                PointKeeper.AddScoreP1();
+
             }
             else if (blueCollor && IsNeutral == true)
             {
                 IsBlue = false;
                 rend.sharedMaterial = Material[2];
-                pointBoxSpawner.OnPlayer2Score();
+                //pointBoxSpawner.OnPlayer2Score();
+                PointKeeper.AddScoreP2();
             }
             else if (redCollor && IsBlue == true) 
             {
                 IsBlue = false;
                 IsRed = true;
                 rend.sharedMaterial = Material[1];
+                PointKeeper.SubtractScoreP1();
             }
             else if (blueCollor && IsRed == true)
             {
                 IsRed = false;
                 IsBlue = true;
                 rend.sharedMaterial = Material[2];
+                PointKeeper.SubtractScoreP2();
             }
         }
     }
