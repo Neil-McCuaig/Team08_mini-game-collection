@@ -44,7 +44,6 @@ namespace MiniGameCollection.Games2024.Team08
                 rend.sharedMaterial = Material[1];
                 //pointBoxSpawner.OnPlayer1Score();
                 PointKeeper.AddScoreP1();
-
             }
             else if (blueCollor && IsNeutral == true)
             {
@@ -55,6 +54,7 @@ namespace MiniGameCollection.Games2024.Team08
             }
             else if (redCollor && IsBlue == true) 
             {
+                //Debug.Log("Blue to Red");
                 IsBlue = false;
                 IsRed = true;
                 rend.sharedMaterial = Material[1];
@@ -62,6 +62,7 @@ namespace MiniGameCollection.Games2024.Team08
             }
             else if (blueCollor && IsRed == true)
             {
+                //Debug.Log("Red to Blue");
                 IsRed = false;
                 IsBlue = true;
                 rend.sharedMaterial = Material[2];

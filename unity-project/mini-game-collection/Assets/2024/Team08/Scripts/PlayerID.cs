@@ -32,7 +32,14 @@ namespace MiniGameCollection.Games2024.Team08
         // Update is called once per frame
         void Update()
         {
-
+            if (player.name == "RedBomb") 
+            { 
+                Destroy(player);
+            }
+            else if (player.name == "BlueBomb")
+            {
+                Destroy(player);
+            }
         }
     }
 }

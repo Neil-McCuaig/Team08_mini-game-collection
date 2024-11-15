@@ -13,7 +13,11 @@ namespace MiniGameCollection.Games2024.Team08
         [field: SerializeField] public float MinSpeedUnitsPerSecond { get; private set; } = 1;
         [field: SerializeField] public float MaxSpeedUnitsPerSecond { get; private set; } = 3;
         public float MaxGameTime { get; private set; }
+        public float FirstBomb { get; private set; }
+        public float SecondBomb { get; private set; }
         public float TimeRemaining { get; private set; }
+
+
 
         protected override void OnTimerInitialized(int maxGameTime)
         {
@@ -25,8 +29,9 @@ namespace MiniGameCollection.Games2024.Team08
             TimeRemaining = timeRemaining;
         }
 
-        public void OnPlayer1Score()
+        public void PaintBombSpawn1()
         {
+            Debug.Log("Works on the spawmer's end");
             Vector3 direction = transform.forward;
             float distanceZ = transform.position.z;
             float speed = ComputeSpeed(MinSpeedUnitsPerSecond, MaxSpeedUnitsPerSecond);
@@ -42,11 +47,11 @@ namespace MiniGameCollection.Games2024.Team08
                 //Obstacle obstacle = instance.GetComponent<Obstacle>();
                 Rigidbody rigidbody = instance.GetComponent<Rigidbody>();
                 // Create force towards players where obstacle reaches in 1s (normalized
-                Vector3 force = direction * rigidbody.mass * distanceZ * speed;
-                rigidbody.AddForce(force, ForceMode.Impulse);
+                //Vector3 force = direction * rigidbody.mass * distanceZ * speed;
+                //rigidbody.AddForce(force, ForceMode.Impulse);
             }
         }
-        public void OnPlayer2Score()
+        public void PaintBombSpawn2()
         {
             Vector3 direction = transform.forward;
             float distanceZ = transform.position.z;
@@ -63,8 +68,8 @@ namespace MiniGameCollection.Games2024.Team08
                 //Obstacle obstacle = instance.GetComponent<Obstacle>();
                 Rigidbody rigidbody = instance.GetComponent<Rigidbody>();
                 // Create force towards players where obstacle reaches in 1s (normalized
-                Vector3 force = direction * rigidbody.mass * distanceZ * speed;
-                rigidbody.AddForce(force, ForceMode.Impulse);
+                //Vector3 force = direction * rigidbody.mass * distanceZ * speed;
+                //rigidbody.AddForce(force, ForceMode.Impulse);
             }
         }
 
